@@ -17,7 +17,7 @@ module datapath (
         input  wire [4:0]  ra3,
         input  wire [31:0] instr,
         input  wire        irq,
-        input  wire        EAddr,
+        input  wire [31:0] EAddr,
         input  wire        return,
         input  wire [31:0] rd_dm,
         output wire [31:0] pc_current,

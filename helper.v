@@ -103,6 +103,18 @@ always @ (posedge clk, posedge rst)
   else q <= 1'b0;
 endmodule
 
+module ffx(
+  input wire clk,
+  input wire rst, 
+  input wire en,
+  output reg q
+);
+always @ (negedge clk, posedge clk)
+  if (rst) q <= 1'b0;
+  else if (en) q <= 1'b1;
+  else q <= 1'b0;
+endmodule
+
 module dreg_clr # (parameter WIDTH = 32) (
   input wire clk,
   input wire rst,

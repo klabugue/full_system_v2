@@ -5,7 +5,7 @@ module mips (
         input  wire [31:0] instr,
         input  wire [31:0] rd_dm,
         input wire         irq,
-        input wire         EAddr,
+        input wire [31:0] EAddr,
         output wire        we_dm,
         output wire [31:0] pc_current,
         output wire [31:0] alu_out,
@@ -29,6 +29,8 @@ module mips (
     wire       sf2reg;
     wire       return;
     wire [1:0] rfe;
+    wire irq_in;
+    wire [31:0] EAddr_in;
     
     assign return = rfe[0];
     assign iack = rfe[1];

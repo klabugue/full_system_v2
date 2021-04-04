@@ -27,13 +27,7 @@ module mips (
     wire       mult_enable;
     wire       sfmux_high;
     wire       sf2reg;
-    wire       return;
-    wire [1:0] rfe;
-    wire irq_in;
     wire [31:0] EAddr_in;
-    
-    assign return = rfe[0];
-    assign iack = rfe[1];
     
     datapath dp (
             .clk            (clk),
@@ -60,7 +54,7 @@ module mips (
             .sf2reg         (sf2reg),
             .irq            (irq),
             .EAddr          (EAddr),
-            .return         (return)
+            .iack           (iack)
         );
 
     controlunit cu (
@@ -80,7 +74,7 @@ module mips (
             .mult_enable    (mult_enable),
             .sfmux_high     (sfmux_high),
             .sf2reg         (sf2reg),
-            .rfe            (rfe)
+            .iack            (iack)
         );
 
 endmodule

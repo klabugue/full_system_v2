@@ -29,8 +29,9 @@ module tb_system();
     end
     initial begin
         clk = 0; rst = 1;
-        n = 3; Sel = 0;
+        n = 5; Sel = 0;
         #20 rst = 0;
+        #300 n = 3;
         #500 $finish;
     end
 endmodule

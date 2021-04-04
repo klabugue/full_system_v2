@@ -32,8 +32,7 @@ module controlunit (
         .we_dm          (we_dm),
         .dm2reg         (dm2reg),
         .alu_op         (alu_op),
-        .iack           (iack),
-        .rfe            (rfe)
+        .iack           (iack)
     );
 
     auxdec ad (

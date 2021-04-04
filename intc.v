@@ -8,8 +8,8 @@ input wire done1,
 input wire done2,
 input wire done3,
 input wire done4,
-output [31:0] EAddr,
-output irq
+output wire [31:0] EAddr,
+output wire irq
 
     );
     
@@ -61,9 +61,9 @@ output irq
         .q(done4_out)
   );
   */
-  dreg_en iack_reg(
+  dreg_en # (1) iack_reg(
        .clk(clk),
-       .rst(rst),
+       .rst(rst||irq),
        .en(iack),
        .d(iack),
        .q(iack_out)

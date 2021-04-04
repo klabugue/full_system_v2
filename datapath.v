@@ -18,7 +18,7 @@ module datapath (
         input  wire [31:0] instr,
         input  wire        irq,
         input  wire [31:0] EAddr,
-        input  wire        return,
+        input  wire        iack,
         input  wire [31:0] rd_dm,
         output wire [31:0] pc_current,
         output wire [31:0] alu_out,
@@ -134,7 +134,7 @@ module datapath (
     );
 
     mux2 #(32)  epc_mux (
-            .sel            (return),
+            .sel            (iack),
             .a              (ea_out),
             .b              (epc_reg_out),
             .y              (epc_mux_out)

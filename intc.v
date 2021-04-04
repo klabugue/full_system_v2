@@ -13,19 +13,19 @@ output irq
 
     );
     
-    wire done1_out, done2_out, done3_out, done4_out;
+    //wire done1_out, done2_out, done3_out, done4_out;
     wire iack_out;
     wire [3:0] done_main;
-    assign done_main = {done4_out, done3_out, done2_out, done1_out};
+    assign done_main = {done4, done3, done2, done1};
+    assign irq = done1 || done2;
     
     pr_enc pr_enc(
         .clk (clk),
         .rst (rst),
         .done (done_main),
-        .EAddr(EAddr),
-        .irq(irq)
+        .EAddr(EAddr)
     );
-    
+    /*
     ff # (1) done1_reg(
         .clk(clk),
         .rst(rst),
@@ -53,11 +53,12 @@ output irq
         .en(done4),
         .q(done4_out)
   );
-  
-  ff iack_reg(
+  */
+  dreg_en iack_reg(
        .clk(clk),
        .rst(rst),
        .en(iack),
+       .d(iack),
        .q(iack_out)
  );
 

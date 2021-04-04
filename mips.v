@@ -10,7 +10,8 @@ module mips (
         output wire [31:0] pc_current,
         output wire [31:0] alu_out,
         output wire [31:0] wd_dm,
-        output wire [31:0] rd3
+        output wire [31:0] rd3,
+        output wire        iack
     );
 
     wire       branch;
@@ -26,7 +27,12 @@ module mips (
     wire       mult_enable;
     wire       sfmux_high;
     wire       sf2reg;
-
+    wire       return;
+    wire [1:0] rfe;
+    
+    assign return = rfe[0];
+    assign iack = rfe[1];
+    
     datapath dp (
             .clk            (clk),
             .rst            (rst),
@@ -49,7 +55,10 @@ module mips (
             .shmux          (shmux),
             .mult_enable    (mult_enable),
             .sfmux_high     (sfmux_high),
-            .sf2reg         (sf2reg)
+            .sf2reg         (sf2reg),
+            .irq            (irq),
+            .EAddr          (EAddr),
+            .return         (return)
         );
 
     controlunit cu (
@@ -68,7 +77,8 @@ module mips (
             .shmux          (shmux),
             .mult_enable    (mult_enable),
             .sfmux_high     (sfmux_high),
-            .sf2reg         (sf2reg)
+            .sf2reg         (sf2reg),
+            .rfe            (rfe)
         );
 
 endmodule

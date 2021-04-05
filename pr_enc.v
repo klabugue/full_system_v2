@@ -7,7 +7,7 @@ input [3:0]			done,
 output reg [31:0] 	EAddr
     );
     
-  always @ (posedge clk, negedge clk) begin
+  always @ (negedge clk) begin
     if(done[0]) begin
         EAddr = 32'h0000002c;  //Should this be 32'h00003000
     end
